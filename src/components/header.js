@@ -1,13 +1,32 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../utils/appSlice"
+import { useRef, useState } from "react";
 const Header = () => {
   const dispatch = useDispatch();
+  const [SearchVal,setSearchVal]=useState("")
+  const debounceRef=useRef(null)
 
   const handleClick = () => {
     dispatch(toggleMenu())
   }
 
+  const callSearchVal=(val)=>{
+    console.log("search value is"+val)
+  }
+
+  const handleChange=(e)=>{
+    const {value}=e.target;
+    setSearchVal(value)
+
+    if(debounceRef.current){
+      clearTimeout(debounceRef.current)
+    }
+
+    debounceRef.current=setTimeout(()=>{
+      callSearchVal(value)
+    },500)
+  }
   return (
     <div className="flex justify-between py-3 shadow-md">
       <div className="flex space-x-2">
@@ -17,7 +36,7 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <input className="border-2 rounded-l-full w-96 p-2 focus:outline-none" type="text"></input>
+        <input value={SearchVal||''} onChange={handleChange} className="border-2 rounded-l-full w-96 p-2 focus:outline-none" type="text"></input>
         <button className="border-e-2 border-y-2 p-2 bg-slate-200 rounded-e-full focus:outline-none">Search</button>
       </div>
       <div>
