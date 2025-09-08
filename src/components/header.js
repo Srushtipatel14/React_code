@@ -10,11 +10,9 @@ const Header = () => {
   const handleClick = () => {
     dispatch(toggleMenu())
   }
-
   const callSearchVal=(val)=>{
     console.log("search value is"+val)
   }
-
   const handleChange=(e)=>{
     const {value}=e.target;
     setSearchVal(value)
