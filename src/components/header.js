@@ -6,7 +6,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const [SearchVal,setSearchVal]=useState("")
   const debounceRef=useRef(null)
-
   const handleClick = () => {
     dispatch(toggleMenu())
   }
