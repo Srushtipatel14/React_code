@@ -15,7 +15,6 @@ const Header = () => {
   const handleChange=(e)=>{
     const {value}=e.target;
     setSearchVal(value)
-
     if(debounceRef.current){
       clearTimeout(debounceRef.current)
     }
