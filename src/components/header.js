@@ -18,7 +18,6 @@ const Header = () => {
     if(debounceRef.current){
       clearTimeout(debounceRef.current)
     }
-
     debounceRef.current=setTimeout(()=>{
       callSearchVal(value)
     },500)
